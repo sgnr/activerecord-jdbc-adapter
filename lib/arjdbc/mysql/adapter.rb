@@ -172,7 +172,7 @@ module ArJdbc
       else
         ActiveRecord::SchemaMigration.create_table
       end
-    end if AR40
+    end if AR40 && !AR50
 
     # HELPER METHODS ===========================================
 
