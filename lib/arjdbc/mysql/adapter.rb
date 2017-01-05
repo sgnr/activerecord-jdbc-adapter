@@ -765,11 +765,19 @@ module ArJdbc
     end if AR42
 
     # @private since AR 4.2
-    def prepare_column_options(column, types)
-      spec = super
-      spec.delete(:limit) if column.type == :boolean
-      spec
-    end if AR42
+    if AR50
+      def prepare_column_options(column)
+        spec = super
+        spec.delete(:limit) if column.type == :boolean
+        spec
+      end
+    elsif AR42
+      def prepare_column_options(column, types)
+        spec = super
+        spec.delete(:limit) if column.type == :boolean
+        spec
+      end
+    end
 
     # @private
     Type = ActiveRecord::Type if AR42
