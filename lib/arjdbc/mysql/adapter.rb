@@ -756,7 +756,7 @@ module ArJdbc
 
     # @note since AR 4.2
     def valid_type?(type)
-      ! native_database_types[type].nil?
+      ! native_database_types[type.type].nil?
     end
 
     def clear_cache!
